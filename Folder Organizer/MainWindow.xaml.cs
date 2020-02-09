@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,14 +23,26 @@ namespace Folder_Organizer
     /// </summary>
     public partial class MainWindow : Window
     {
+        private FolderOrganizer.Core.FolderOrganizer _folderOrganizer;
         public MainWindow()
         {
             InitializeComponent();
+            selectedFolderPath.Text = System.Environment.ExpandEnvironmentVariables("%userprofile%/downloads/");
+
         }
 
         private void organizeFolder_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.MessageBox.Show(this, "Organizing Folder please wait.");
+            System.Windows.MessageBox.Show(this, "Organizing Folder.. Please Wait...");
+
+            _folderOrganizer = new FolderOrganizer.Core.FolderOrganizer(selectedFolderPath.Text, DefaultFolderClassification.GetDefaults());
+
+            _folderOrganizer.Organize();
+
+            System.Windows.MessageBox.Show(this, "Folder Organized");
+
+            Process.Start(selectedFolderPath.Text);
+
         }
 
         private void selectFolder_Click(object sender, RoutedEventArgs e)
@@ -40,8 +53,6 @@ namespace Folder_Organizer
             if (result == System.Windows.Forms.DialogResult.OK)
             {
                 selectedFolderPath.Text = dlg.SelectedPath;
-
-                var folderOrganizer = new FolderOrganizer.Core.FolderOrganizer(dlg.SelectedPath);
             }
         }
     }

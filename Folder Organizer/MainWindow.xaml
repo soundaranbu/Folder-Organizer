@@ -13,9 +13,11 @@
             <ColumnDefinition Width="55*"/>
             <ColumnDefinition Width="578*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="organizeFolder" Content="Organize Folder" HorizontalAlignment="Left" VerticalAlignment="Top" Width="310" Margin="9.8,282,0,0" Grid.Column="3" Click="organizeFolder_Click" Height="38"/>
-        <Button x:Name="selectFolder" Content="Select Folder" HorizontalAlignment="Left" Margin="9.8,154,0,0" VerticalAlignment="Top" Width="103" Grid.Column="3" Click="selectFolder_Click" Height="27"/>
-        <TextBlock x:Name="selectedFolderPath" HorizontalAlignment="Left" Margin="134.8,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-0.304,-1.267" Grid.Column="3"/>
+        <Border BorderBrush="#FFA3A3A3" BorderThickness="1" HorizontalAlignment="Left" Height="54" Margin="87,104,0,0" VerticalAlignment="Top" Width="629" Grid.ColumnSpan="4"/>
+
+        <Button x:Name="organizeFolder" Content="Organize Folder" HorizontalAlignment="Left" VerticalAlignment="Top" Width="310" Margin="9.8,282,0,0" Grid.Column="3" Click="organizeFolder_Click" Height="38" BorderBrush="White" Background="#FF3077F0" Foreground="White"/>
+        <Button x:Name="selectFolder" Content="Select Folder" HorizontalAlignment="Left" Margin="385.8,163,0,0" VerticalAlignment="Top" Width="103" Grid.Column="3" Click="selectFolder_Click" Height="27" Background="#FFFDFDFD"/>
+        <TextBlock x:Name="selectedFolderPath" HorizontalAlignment="Left" Margin="96,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-0.304,-1.267" Width="608" Height="21" Grid.ColumnSpan="4" FontSize="14" Background="White"/>
 
     </Grid>
 </Window>

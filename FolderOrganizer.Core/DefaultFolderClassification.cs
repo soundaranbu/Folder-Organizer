@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -9,14 +11,21 @@ namespace FolderOrganizer.Core
     {
         public static List<FolderClassification> GetDefaults()
         {
-            var classifications = new List<FolderClassification>();
+            string json;
+            try
+            {
+                json = File.ReadAllText("DefaultFolderClassification.json");
+            }
+            catch (Exception e)
+            {
+                throw new FileNotFoundException("DefaultFolderClassification.json not found");
+            }           
 
-            classifications.Add(CreateClassification("Picures", new string[] { ".jpeg", ".jpg" }));
-            classifications.Add(CreateClassification("Documents", new string[] { ".pdf", ".docx", ".doc", ".sql",".xlsx", ".csv", ".json" }));
-            classifications.Add(CreateClassification("Softwares", new string[] { ".exe", ".msi" }));
-            classifications.Add(CreateClassification("Archives", new string[] { ".zip", ".7z", ".rar" }));
+            var classificationsParsed = JsonConvert.DeserializeObject<FolderClassificationJson>(json);
 
-            return classifications;
+            var classifications = new List<FolderClassification>();           
+
+            return classificationsParsed.FolderClassifications;
         }
 
         protected static FolderClassification CreateClassification(string classificationName, string[] extensions)

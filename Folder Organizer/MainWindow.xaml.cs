@@ -1,20 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using FolderOrganizer.Core;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using FolderOrganizer.Core;
 
 namespace Folder_Organizer
 {
@@ -33,16 +20,15 @@ namespace Folder_Organizer
 
         private void organizeFolder_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.MessageBox.Show(this, "Organizing Folder.. Please Wait...");
-
+            //            System.Windows.MessageBox.Show(this, "Organizing Folder.. Please Wait...");
+            statusMessage.Content = "Organizing Folder.. Please Wait...";
             _folderOrganizer = new FolderOrganizer.Core.FolderOrganizer(selectedFolderPath.Text, DefaultFolderClassification.GetDefaults());
 
             _folderOrganizer.Organize();
-
-            System.Windows.MessageBox.Show(this, "Folder Organized");
+            statusMessage.Content = "Awesome! Your folder is now organized.";
+            //            System.Windows.MessageBox.Show(this, "Folder Organized");
 
             Process.Start(selectedFolderPath.Text);
-
         }
 
         private void selectFolder_Click(object sender, RoutedEventArgs e)

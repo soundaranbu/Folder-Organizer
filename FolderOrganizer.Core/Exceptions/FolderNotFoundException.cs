@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FolderOrganizer.Core.Exceptions
 {
-    class FolderNotFoundException : Exception
+    public class FolderNotFoundException : Exception
     {
         public FolderNotFoundException()
         {

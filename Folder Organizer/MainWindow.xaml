@@ -8,16 +8,29 @@
         Title="Folder Organizer" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="125*"/>
-            <ColumnDefinition Width="35*"/>
-            <ColumnDefinition Width="55*"/>
-            <ColumnDefinition Width="578*"/>
+            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Border BorderBrush="#FFA3A3A3" BorderThickness="1" HorizontalAlignment="Left" Height="54" Margin="87,104,0,0" VerticalAlignment="Top" Width="629" Grid.ColumnSpan="4"/>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Hey! What are you organizing today?" FontSize="24" FontFamily="Segoe UI Black"/>
 
-        <Button x:Name="organizeFolder" Content="Organize Folder" HorizontalAlignment="Left" VerticalAlignment="Top" Width="310" Margin="9.8,282,0,0" Grid.Column="3" Click="organizeFolder_Click" Height="38" BorderBrush="White" Background="#FF3077F0" Foreground="White"/>
-        <Button x:Name="selectFolder" Content="Select Folder" HorizontalAlignment="Left" Margin="385.8,163,0,0" VerticalAlignment="Top" Width="103" Grid.Column="3" Click="selectFolder_Click" Height="27" Background="#FFFDFDFD"/>
-        <TextBlock x:Name="selectedFolderPath" HorizontalAlignment="Left" Margin="96,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-0.304,-1.267" Width="608" Height="21" Grid.ColumnSpan="4" FontSize="14" Background="White"/>
+        <Grid Grid.Row="1" Margin="50 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Grid.Column="0" BorderBrush="#FFA3A3A3" BorderThickness="1" HorizontalAlignment="Stretch" Height="54" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="20 0" x:Name="selectedFolderPath" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" RenderTransformOrigin="-0.304,-1.267" Width="608" Height="21" Grid.ColumnSpan="5" FontSize="14" Background="White"/>
+            <Button Grid.Row="0" Grid.Column="0"  Margin="0 0 20 0" VerticalAlignment="Center" x:Name="selectFolder" Content="Select Folder" HorizontalAlignment="Right" Width="103" Click="selectFolder_Click" Height="27" Background="#FFFDFDFD" />
+        </Grid>
 
+        <Button Grid.Row="2" HorizontalContentAlignment="Center" x:Name="organizeFolder" Content="Organize Folder" HorizontalAlignment="Center" VerticalAlignment="Center" Width="310" Click="organizeFolder_Click" Height="38" BorderBrush="White" Background="#FF3077F0" Foreground="White"/>
+        <Label Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="statusMessage" Content="" />
     </Grid>
 </Window>

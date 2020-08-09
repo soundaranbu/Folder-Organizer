@@ -17,6 +17,7 @@ namespace FolderOrganizer.Core
 
         public List<FolderArrangement> FolderArrangements { get; set; }
 
+        public event EventHandler<LogEventArgs> LogOutput;
 
         public FolderOrganizer(string folderPath, List<FolderClassification> folderClassifications)
         {
@@ -34,6 +35,7 @@ namespace FolderOrganizer.Core
             FolderClassifications = folderClassifications;
             if (Directory.Exists(FolderPath))
             {
+                Log($"'{FolderPath}' Exists");
                 FolderPathInfo = new DirectoryInfo(folderPath);
 
                 Initialize();
@@ -42,13 +44,12 @@ namespace FolderOrganizer.Core
             {
                 throw new FolderNotFoundException(folderPath);
             }
-
-
         }
 
         protected void Initialize()
         {
             FilesInFolder = FolderPathInfo.GetFiles();
+            Log($"Found {FilesInFolder.Length} files to organize");
         }
 
         public bool Organize()
@@ -64,15 +65,21 @@ namespace FolderOrganizer.Core
                         folderArrangement.MoveFilesToTargetDirectory();
                     }
                 }
+                else
+                {
+                    Log($"Classification `{folderArrangement.FolderClassification.ClassificationName}` don't have any flies.");
+                }
             }
 
             FolderArrangements = null;
 
+            Log("Completed.");
             return true;
         }
 
         protected void Arrange()
         {
+            Log("Creating virtual file arrangements");
             if (FolderArrangements is null)
             {
                 FolderArrangements = new List<FolderArrangement>();
@@ -87,5 +94,20 @@ namespace FolderOrganizer.Core
                 FolderArrangements.Add(folderArrangement);
             }
         }
+
+        protected virtual void Log(string message)
+        {
+            LogOutput?.Invoke(this, new LogEventArgs(message));
+        }
+    }
+
+    public class LogEventArgs : EventArgs
+    {
+        public LogEventArgs(string message)
+        {
+            Message = message;
+        }
+
+        public string Message { get; set; }
     }
 }

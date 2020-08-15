@@ -61,5 +61,10 @@ namespace Folder_Organizer
                 }
             };
         }
+
+        private void addClassificationButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("");
+        }
     }
 }

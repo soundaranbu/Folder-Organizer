@@ -13,7 +13,8 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"></ColumnDefinition>
-            <ColumnDefinition Width="150"></ColumnDefinition>
+            <ColumnDefinition Width="175"></ColumnDefinition>
+            <ColumnDefinition Width="175"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -24,20 +25,24 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Background="LightGray">
-                <Button  Content="Go to Home" Height="30" HorizontalAlignment="Stretch" Click="Button_Click"></Button>
-                <Button x:Name="classificationProfile" Grid.Row="0" Content="Classification Profile" Height="30" HorizontalAlignment="Stretch"/>
+                <Button  Content="Go to Home" Height="40" HorizontalAlignment="Stretch" Click="Button_Click" Background="White" BorderThickness="0 0 0 .5" BorderBrush="LightGray"></Button>
+                <Button x:Name="classificationProfile" Grid.Row="0" Content="Classification Profile" Height="40" HorizontalAlignment="Stretch" BorderThickness="0 0 0 .5" BorderBrush="LightGray" Background="White"/>
             </StackPanel>
         </Grid>
         <StackPanel Grid.Column="1" Background="white">
+            <Button  Content="Default" Height="40" HorizontalAlignment="Stretch" Background="White" BorderThickness="0 0 0 .5" BorderBrush="LightGray"></Button>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Background="white">
             <ListView x:Name="classificationsList" ItemsSource="{Binding ClassificationNames}" SelectionChanged="classificationsList_SelectionChanged" BorderThickness="0">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="Height" Value="40" />
                         <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Padding" Value="20 0 0 0"/>
                     </Style>
                 </ListView.ItemContainerStyle>
             </ListView>
-            <Button Content="Add" HorizontalContentAlignment="Center" Click="Button_Click" Height="40" BorderBrush="White" Background="#FF3077F0" Foreground="White" FontSize="20" Cursor="Hand">
+            <Button x:Name="addClassificationButton" Content="Add" HorizontalContentAlignment="Center" Click="addClassificationButton_Click" Height="40" BorderBrush="White" Background="#FF3077F0" Foreground="White" FontSize="20" Cursor="Hand">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="LightBlue" />
@@ -59,12 +64,14 @@
                 </Button.Style>
             </Button>
         </StackPanel>
-        <StackPanel Grid.Column="2" Background="white">
+        <StackPanel Grid.Column="3" Background="white">
             <controls:ClassificationEditControl x:Name="classificationDetail" VerticalContentAlignment="Stretch"></controls:ClassificationEditControl>
         </StackPanel>
         <Border Grid.Column="1" BorderBrush="LightGray" 
         BorderThickness="0.5,0,0,0" Background="{x:Null}" />
         <Border Grid.Column="2" BorderBrush="LightGray" 
+        BorderThickness="0.5,0,0,0" Background="{x:Null}" />
+        <Border Grid.Column="3" BorderBrush="LightGray" 
         BorderThickness="0.5,0,0,0" Background="{x:Null}" />
     </Grid>
 </Page>
